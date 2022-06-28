@@ -43,42 +43,51 @@
         <h1> OT Data </h1>
     </div>
     <div class="container">
-        <form name="myForm" class="forms-my" method="POST">
-            <div class="grid-container">
-                <div class="Abouttime">
-                    <p> ระบุช่วงเวลาที่ต้องการ </p>
-                    <div class="grid-container">
-                        <div>
-                            <lable> วันเริ่มต้น  : </label>
-                            <input type="date" id="dateStart" name="dateStart" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none; background-color: #d6d6d6;" 
-                                value="<?php echo $dateStart ;?>" readonly />
-                        </div>
-                        <div>
-                            <lable> วันสิ้นสุด   : </label>
-                            <input type="date" id="dateEnd" name="dateEnd" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none; background-color: #d6d6d6;" 
-                                value="<?php echo $dateEnd ; ?>" readonly />
-                        </div>
+        <div class="grid-container">
+            <div class="Abouttime">
+                <p> ระบุช่วงเวลาที่ต้องการ </p>
+                <div class="grid-container">
+                    <div>
+                        <lable> วันเริ่มต้น  : </label>
+                        <input type="date" id="dateStart" name="dateStart" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none; background-color: #d6d6d6;" 
+                            value="<?php echo $dateStart ;?>" readonly />
                     </div>
-                </div>
-                <div class="Abouttype">
-                    <p> รูปแบบที่ต้องการ </p>
-                    <div class="grid-container">
-                        <div class="option-radio">
-                            <input name="yesno" class="DateInput" style="background-color: #d6d6d6;" readonly
-                                value="<?php 
-                                    if ($type == "only") {
-                                        echo "เอาเฉพาะข้อมูลที่ไม่เคย Export" ;
-                                    } else {
-                                        echo "เอาข้อมูลทั้งหมด" ;
-                                    }
-                                ?>"/> 
-                        </div>
+                    <div>
+                        <lable> วันสิ้นสุด   : </label>
+                        <input type="date" id="dateEnd" name="dateEnd" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none; background-color: #d6d6d6;" 
+                            value="<?php echo $dateEnd ; ?>" readonly />
                     </div>
                 </div>
             </div>
+            <div class="Abouttype">
+                <p> รูปแบบที่ต้องการ </p>
+                <div class="grid-container">
+                    <div class="option-radio">
+                        <input name="yesno" class="DateInput" style="background-color: #d6d6d6;" readonly
+                            value="<?php 
+                                if ($type == "only") {
+                                    echo "เอาเฉพาะข้อมูลที่ไม่เคย Export" ;
+                                } else {
+                                    echo "เอาข้อมูลทั้งหมด" ;
+                                }
+                            ?>"/> 
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <button class="btn-export" title="Click to export" name="save" type="submit"> Export </button>
-        </form>
+        <div class="grid-container2">    
+            <form method="POST">
+                <button class="btn-export" title="Click to export" name="save" type="submit"> Export </button>
+            </form>
+            <button class="btn-back" name = "back" onclick="goBack()"> Edit </button>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }   
+            </script>
+        </div>
+
         <table class="tabledata" >
             <thead>
             <tr> 

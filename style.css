@@ -61,6 +61,11 @@ tbody tr:nth-child(even){
   grid-template-columns: 50% 50% ;
 }
 
+.grid-container2 {
+  display: grid;
+  grid-template-columns: 300px 300px ;
+}
+
 .Abouttime {
   background-color: #acb6ff;
   padding-top: 10px;
@@ -86,4 +91,27 @@ tbody tr:nth-child(even){
 
 .option-radio {
   margin: 0px;
+}
+
+.btn-back {
+  background-color: #6e66e1;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 110.25px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.btn-back:hover {
+  background-color:#002ead;
+  transition: 0.7s;
 }
