@@ -17,6 +17,10 @@
                                     "TPM/AM" => "C12", "อื่นๆ" => "I99", "Project" => "C03", "อบรม/สัมนา/ประชุม" => "C05") ;
 
     $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' ORDER BY time_stamp DESC");
+
+    if (isset($_POST["save"])) {
+        header("Location: export.php?dateStart=$dateStart&dateEnd=$dateEnd");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +36,9 @@
         <h1> OT Data </h1>
     </div>
     <div class="container">
+        <form name="myForm" class="forms-my" method="POST">
+            <button class="btn-export" title="Click to export" name="save" type="submit"> Export </button>
+        </form>
         <table class="tabledata" >
             <thead>
             <tr> 
