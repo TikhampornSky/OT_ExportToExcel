@@ -34,16 +34,24 @@
             <div class="grid-container">
                 <div>
                     <lable> วันเริ่มต้น  : </label>
-                    <input> </input>
+                    <input type="date" name="dateStart" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none;" />
                 </div>
                 <div>
                     <lable> วันสิ้นสุด   : </label>
-                    <input> </input>
+                    <input type="date" name="dateEnd" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none;" />
                 </div>
             </div>
         </div>
         <div class="Abouttype">
             <p> รูปแบบที่ต้องการ </p>
+            <div class="grid-container">
+                <div class="option-radio">
+                    <input type="radio" name="yesno" value="only"> เอาเฉพาะข้อมูลที่ไม่เคย Export
+                </div>
+                <div class="option-radio">
+                    <input type="radio" name="yesno" value="all"> เอาข้อมูลทั้งหมด
+                </div>
+            </div>
         </div>
     </div>
     <div class="container">
