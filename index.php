@@ -46,17 +46,37 @@
             <p> รูปแบบที่ต้องการ </p>
             <div class="grid-container">
                 <div class="option-radio">
-                    <input type="radio" name="yesno" value="only"> เอาเฉพาะข้อมูลที่ไม่เคย Export
+                    <input type="radio" name="yesno" value="only" class="typeData"> เอาเฉพาะข้อมูลที่ไม่เคย Export
                 </div>
                 <div class="option-radio">
-                    <input type="radio" name="yesno" value="all"> เอาข้อมูลทั้งหมด
+                    <input type="radio" name="yesno" value="all" class="typeData"> เอาข้อมูลทั้งหมด
                 </div>
+                <p style="display: none; color:red;" id="warn-type"> กรุณาเลือกรูปแบบที่ท่านต้องการ! </p>
             </div>
         </div>
     </div>
     <div class="container">
-        <button onclick="window.location.href = './export.php';" class="btn-export" title="Click to export" > Export </button>
-        <table class="tabledata">
+        <button onclick="clickExport()" class="btn-export" title="Click to export" > Export </button>
+        <script>
+            function clickExport() {
+                var type = document.querySelector('input[name="yesno"]:checked') ;
+                var check1 = false;
+                if (type == null) {
+                    console.log("undefined") ;
+                    document.getElementById("warn-type").style.display = "inline-block";
+                } else {
+                    console.log(type.value) ;
+                    document.getElementById("warn-type").style.display = "none";
+                    check1 = true ;
+                }
+
+                if (check1 == true) {
+                    document.getElementsByClassName("tabledata")[0].style.display = "block";
+                    return window.location.href = './export.php';
+                }
+            }
+        </script>
+        <table class="tabledata" style="display: none;">
             <thead>
             <tr> 
                 <!-- <th> transaction ID </th> -->               <!-- For Debug -->
