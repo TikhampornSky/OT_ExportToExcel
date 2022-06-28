@@ -6,7 +6,6 @@
         $str = preg_replace("/\t/", "\\t", $str);                   //preg_replace(patterns, replacements, input, limit, count)
         $str = preg_replace("/\r?\n/", "\\n", $str); 
         if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"'; 
-        //$str = mb_convert_encoding($str, 'UTF-16LE', 'UTF-8');
     }
 
     function decimalHours($time) {
@@ -171,24 +170,6 @@
 
 
     //Header for download
-    /*
-    header("Pragma: public");
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Content-Type: application/force-download");
-    header("Content-Type: application/octet-stream");
-    header("Content-Type: application/download"); 
-    header("Content-Disposition: attachment; filename=\"$fileName\""); 
-    header("Content-Type: application/vnd.ms-excel; charset=UTF-8;"); 
-    header('Content-Transfer-Encoding: UTF-8');
-    //header('Content-Type: text/csv; charset=UTF-8;');
-    */
-    /*
-    header("Content-Type: application/xls");
-	header("Content-Disposition: attachment; filename=export.xls");
-	header("Pragma: no-cache");
-	header("Expires: 0");
-    */
     header("Content-Disposition: attachment; filename=\"$fileName\"");
     header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
 

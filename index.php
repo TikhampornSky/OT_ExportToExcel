@@ -13,17 +13,6 @@
     $reasonCODE = array("งานต่อเนื่อง" => "C01", "วันหยุดประเพณี" => "C08", "ปฏิบัติงานแทนเพื่อนร่วมงาน" => "C07", "งานซ่อมบำรุง" => "C10", "งาน PM" => "C13", "งานเร่งด่วน" => "A14", 
                                     "TPM/AM" => "C12", "อื่นๆ" => "I99", "Project" => "C03", "อบรม/สัมนา/ประชุม" => "C05") ;
     $query = $con->query("SELECT * FROM transaction WHERE `approve_status` = 'approve' ORDER BY time_stamp DESC ");
-
-    /*
-    if(isset($_GET['act'])){
-        if($_GET['act']== 'excel'){
-            header("Content-Type: application/xls");
-            header("Content-Disposition: attachment; filename=export.xls");
-            header("Pragma: no-cache");
-            header("Expires: 0");
-        }
-    }
-    */
     
 ?>
 
@@ -38,9 +27,6 @@
 <body>
     <div class="container">
         <button onclick="window.location.href = './export.php';" class="btn btn-success" title="Click to export" > Export </button>
-        <!-- <a href="export.php" class="btn btn-primary"> Export->Excel </a> -->
-        <!-- <a href="?act=excel" class="btn btn-primary"> Export->Excel </a> -->
-        <!-- <button onclick="window.location.href = 'export.php';" class="btn btn-success" title="Click to export" > Export </button> -->
         <table class="tabledata">
             <thead>
             <tr> 
