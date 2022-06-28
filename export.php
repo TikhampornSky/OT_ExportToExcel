@@ -1,6 +1,8 @@
 <?php 
     require_once './dbConfig.php';
-    
+    $dateStart = $_GET['dateStart'] ;
+    $dateEnd = $_GET['dateEnd'] ;
+
     //filter the excel data                 
     function filterData(&$str){ 
         $str = preg_replace("/\t/", "\\t", $str);                   //preg_replace(patterns, replacements, input, limit, count)
@@ -31,7 +33,7 @@
     $excelData = implode("\t", array_values($fields)) . "\n"; 
 
     //Get record from the database ;
-    $query = $con->query("SELECT * FROM transaction ORDER BY time_stamp DESC");
+    $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' ORDER BY time_stamp DESC");
 
     if($query->num_rows > 0) {
         $i = 0 ;
@@ -168,13 +170,11 @@
         $excelData .= 'No record found...' . "\n" ;
     }
 
-
     //Header for download
     header("Content-Disposition: attachment; filename=\"$fileName\"");
     header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
 
     //Render excel data
     echo $excelData;
-
     exit;
 ?>
