@@ -40,7 +40,6 @@
                 <th> End Time </th>
                 <th> Attendance Hours </th>
                 <th> Attendance reason </th>
-                <th> Detail </th>
                 <th> Cost center </th>
                 <th> Previous day indicator </th>
             </tr>
@@ -148,17 +147,6 @@
                                 echo $b[$reason] ;
                             } else {
                                 echo "I99" ;            //อื่นๆ
-                            }
-                        ?>
-                    </td>
-                    <td>  <?php
-                            $detail = $row['request_detail'];
-                            $reason = $row['request_msg'] ;
-                            if (isset($b[$reason])) {
-                                echo $detail ;
-                            } else {
-                                $arr = explode("-", $reason) ;
-                                echo $arr[1]. "  " . $detail ;            
                             }
                         ?>
                     </td>
