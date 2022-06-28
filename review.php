@@ -235,7 +235,7 @@
                     }
                 }else {
                 ?> 
-                    <tr><td colspan="6"> No data found... </td><tr>
+                    <tr><td colspan="11"> No data found... </td><tr>
                 <?php
                 }
                 ?>
