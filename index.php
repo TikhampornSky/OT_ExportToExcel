@@ -25,6 +25,27 @@
 </head>
 
 <body>
+    <div>
+        <h1> Export OT Data </h1>
+    </div>
+    <div class="grid-container">
+        <div class="Abouttime">
+            <p> ระบุช่วงเวลาที่ต้องการ </p>
+            <div class="grid-container">
+                <div>
+                    <lable> วันเริ่มต้น  : </label>
+                    <input> </input>
+                </div>
+                <div>
+                    <lable> วันสิ้นสุด   : </label>
+                    <input> </input>
+                </div>
+            </div>
+        </div>
+        <div class="Abouttype">
+            <p> รูปแบบที่ต้องการ </p>
+        </div>
+    </div>
     <div class="container">
         <button onclick="window.location.href = './export.php';" class="btn-export" title="Click to export" > Export </button>
         <table class="tabledata">
@@ -66,7 +87,7 @@
                             } else if ($row['stamp_channel'] == "ปฏิบัติงานภายนอก") {
                                 $value = "A002" ;           //นอกสถานที่
                             } else {
-                                $value = "error" ;
+                                $value = "undefined" ;
                             }
                             echo $value ;
                         ?> 
