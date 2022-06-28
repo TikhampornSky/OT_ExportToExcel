@@ -26,7 +26,7 @@
 
 <body>
     <div class="container">
-        <button onclick="window.location.href = './export.php';" class="btn btn-success" title="Click to export" > Export </button>
+        <button onclick="window.location.href = './export.php';" class="btn-export" title="Click to export" > Export </button>
         <table class="tabledata">
             <thead>
             <tr> 
