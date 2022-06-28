@@ -3,6 +3,7 @@
     
     $dateStart = $_GET['dateStart'] ;
     $dateEnd = $_GET['dateEnd'] ;
+    $type = $_GET['type'] ;
 
     function decimalHours($time) {
         $hms = explode(":", $time);
@@ -26,6 +27,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>        <!-- Link to jquery-->
+    <script>
+        $(document).ready(function(){
+            
+        });
+    </script>
     <title> OT Data </title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./style.css">
@@ -37,6 +44,39 @@
     </div>
     <div class="container">
         <form name="myForm" class="forms-my" method="POST">
+            <div class="grid-container">
+                <div class="Abouttime">
+                    <p> ระบุช่วงเวลาที่ต้องการ </p>
+                    <div class="grid-container">
+                        <div>
+                            <lable> วันเริ่มต้น  : </label>
+                            <input type="date" id="dateStart" name="dateStart" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none; background-color: #d6d6d6;" 
+                                value="<?php echo $dateStart ;?>" readonly />
+                        </div>
+                        <div>
+                            <lable> วันสิ้นสุด   : </label>
+                            <input type="date" id="dateEnd" name="dateEnd" placeholder="dd/mm/YYYY" class= "DateInput" style="-webkit-appearance: none; -moz-appearance: none; background-color: #d6d6d6;" 
+                                value="<?php echo $dateEnd ; ?>" readonly />
+                        </div>
+                    </div>
+                </div>
+                <div class="Abouttype">
+                    <p> รูปแบบที่ต้องการ </p>
+                    <div class="grid-container">
+                        <div class="option-radio">
+                            <input name="yesno" class="DateInput" style="background-color: #d6d6d6;" readonly
+                                value="<?php 
+                                    if ($type == "only") {
+                                        echo "เอาเฉพาะข้อมูลที่ไม่เคย Export" ;
+                                    } else {
+                                        echo "เอาข้อมูลทั้งหมด" ;
+                                    }
+                                ?>"/> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button class="btn-export" title="Click to export" name="save" type="submit"> Export </button>
         </form>
         <table class="tabledata" >

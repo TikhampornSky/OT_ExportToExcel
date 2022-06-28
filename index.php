@@ -24,7 +24,8 @@
     if (isset($_POST["review"])) {
         $dateStart = $_POST['dateStart'] ;
         $dateEnd = $_POST['dateEnd'] ;
-        header("Location: review.php?dateStart=$dateStart&dateEnd=$dateEnd");
+        $type = $_POST['yesno'] ;
+        header("Location: review.php?dateStart=$dateStart&dateEnd=$dateEnd&type=$type");
     }
 ?>
 
