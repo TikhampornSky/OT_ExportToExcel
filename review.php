@@ -17,10 +17,16 @@
     $reasonCODE = array("งานต่อเนื่อง" => "C01", "วันหยุดประเพณี" => "C08", "ปฏิบัติงานแทนเพื่อนร่วมงาน" => "C07", "งานซ่อมบำรุง" => "C10", "งาน PM" => "C13", "งานเร่งด่วน" => "A14", 
                                     "TPM/AM" => "C12", "อื่นๆ" => "I99", "Project" => "C03", "อบรม/สัมนา/ประชุม" => "C05") ;
 
-    $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' ORDER BY time_stamp DESC");
+    if ($type == "only") {
+        $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' AND `IsReport` = 0 
+                            AND (`approve_status` = 'approve' OR `approve_status` = 'edit') ORDER BY time_stamp DESC");
+    } else {
+        $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' 
+                            AND (`approve_status` = 'approve' OR `approve_status` = 'edit') ORDER BY time_stamp DESC");
+    }
 
     if (isset($_POST["save"])) {
-        header("Location: export.php?dateStart=$dateStart&dateEnd=$dateEnd");
+        header("Location: export.php?dateStart=$dateStart&dateEnd=$dateEnd&type=$type");
     }
 ?>
 

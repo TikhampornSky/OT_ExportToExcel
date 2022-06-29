@@ -2,6 +2,7 @@
     require_once './dbConfig.php';
     $dateStart = $_GET['dateStart'] ;
     $dateEnd = $_GET['dateEnd'] ;
+    $type = $_GET['type'] ;
 
     //filter the excel data                 
     function filterData(&$str){ 
@@ -33,11 +34,18 @@
     $excelData = implode("\t", array_values($fields)) . "\n"; 
 
     //Get record from the database ;
-    $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' ORDER BY time_stamp DESC");
+    if ($type == "only") {
+        $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' AND `IsReport` = 0 
+                            AND (`approve_status` = 'approve' OR `approve_status` = 'edit') ORDER BY time_stamp DESC");
+    } else {
+        $query = $con->query("SELECT * FROM transaction WHERE `date` >= '$dateStart' AND `date` <= '$dateEnd' 
+                            AND (`approve_status` = 'approve' OR `approve_status` = 'edit') ORDER BY time_stamp DESC");
+    }
 
     if($query->num_rows > 0) {
         $i = 0 ;
         while ($row = $query->fetch_assoc()) {
+            echo $row['transaction_id'] ;
             $i++;
             //-------------------------------------------------------------------------------------------------
             $Infotype = 2002 ;                                                                          //*
@@ -160,8 +168,10 @@
             if ($midnight <= $start_num && $start_num <= $morning && $midnight <= $end_num && $end_num <= $morning) {
                 $mark = "X";                                                                    //*
             }
+            //----------------------------------------------UPDATE-----------------------------------------------
+            $transaction_id = $row['transaction_id'] ;
+            mysqli_query($con, "UPDATE transaction SET IsReport = 1 WHERE transaction_id = '$transaction_id'");
             //---------------------------------------------------------------------------------------------------
-
             $rowData = array($Infotype, $SCG_EMP_ID, $Attendance_Type, $Start_Date, $End_Date, $Start_Time, $End_Time, $Attendance_Hours, $Attendance_reason, $Cost_center, $mark) ;
             array_walk($rowData, 'filterData');
             $excelData .= implode("\t", array_values($rowData)) . "\n" ;

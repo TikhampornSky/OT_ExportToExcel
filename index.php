@@ -15,12 +15,6 @@
 
     $query = $con->query("SELECT * FROM transaction WHERE `approve_status` = 'approve' ORDER BY time_stamp DESC ");
 
-    if (isset($_POST["save"])) {
-        $dateStart = $_POST['dateStart'] ;
-        $dateEnd = $_POST['dateEnd'] ;
-        header("Location: export.php?dateStart=$dateStart&dateEnd=$dateEnd");
-    }
-
     if (isset($_POST["review"])) {
         $dateStart = $_POST['dateStart'] ;
         $dateEnd = $_POST['dateEnd'] ;
@@ -79,7 +73,6 @@
                 </div>
             </div>
         </div>
-        <button class="btn-export" title="Click to export" name="save" type="submit"> Export </button>
         <button class="btn-export" title="Click to review" name="review" type="submit"> Review </button>
     </form>
 
@@ -97,11 +90,15 @@
                     document.getElementById("warn-type").style.display = "none";
                     check1 = true ;
                 }
-                
+
                 var dateStart = document.getElementById("dateStart").value ;
                 var dateEnd = document.getElementById("dateEnd").value ;
                 console.log(dateStart) ;
                 console.log(dateEnd) ;
+                if (dateStart > dateEnd) {
+                    check1 = false ;
+                    alert("เกิดข้อผิดพลาด : วันสิ้นสุดต้องมากกว่าหรือเท่ากับวันเริ่มต้น");
+                }
                 return check1 ;
             }
         </script>
